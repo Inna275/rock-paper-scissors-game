@@ -2,6 +2,9 @@
 
 const readline = require('node:readline').promises;
 
+const ROUNDS_PROMPT = 'Enter the number of rounds: ';
+const CHOICE_PROMPT = 'Enter your choice (rock, paper, or scissors): ';
+
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
@@ -31,5 +34,15 @@ const getRandomOption = () => {
 const getComputerChoice = () => {
   const choice = getRandomOption();
   console.log(`Computer chooses ${choice}`);
+  return choice;
+};
+
+const getNumberOfRounds = async () => {
+  const rounds = await rl.question(ROUNDS_PROMPT);
+  return rounds;
+};
+
+const getUserChoice = async () => {
+  const choice = await rl.question(CHOICE_PROMPT);
   return choice;
 };
