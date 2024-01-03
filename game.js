@@ -78,3 +78,14 @@ const playRound = async ({ userScore, computerScore }) => {
   const updatedScores = updateScores(roundWinner, userScore, computerScore);
   return updatedScores;
 };
+
+const determineWinner = ({ userScore, computerScore }) => {
+  console.log(
+    `Game over! Your score: ${userScore}, computer score: ${computerScore}`,
+  );
+  const winner =
+    userScore > computerScore ? 'You win!' : 
+    userScore < computerScore ? 'Computer win!': 
+    'It\'s a tie!';
+  console.log(winner);
+};
