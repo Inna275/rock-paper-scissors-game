@@ -4,6 +4,8 @@ const readline = require('node:readline').promises;
 
 const ROUNDS_PROMPT = 'Enter the number of rounds: ';
 const CHOICE_PROMPT = 'Enter your choice (rock, paper, or scissors): ';
+const REPLAY_PROMPT = 'Play again? (yes/no): ';
+const BYE_MESSAGE = 'Goodbye! Thanks for playing.';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -89,3 +91,26 @@ const determineWinner = ({ userScore, computerScore }) => {
     'It\'s a tie!';
   console.log(winner);
 };
+
+const endGame = () => {
+  console.log(BYE_MESSAGE);
+  rl.close();
+};
+
+const handleReplay = async () => {
+  const answer = await rl.question(REPLAY_PROMPT);
+  answer.toLowerCase() === 'yes' ? playGame() : endGame();
+};
+
+const playGame = async () => {
+  let scores = resetScores();
+  const rounds = await getNumberOfRounds();
+  for (let i = 1; i <= rounds; i++) {
+    console.log(`Round ${i} of ${rounds}:`);
+    scores = await playRound(scores);
+  }
+  determineWinner(scores);
+  await handleReplay();
+};
+
+playGame();
