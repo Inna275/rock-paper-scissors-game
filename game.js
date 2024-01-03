@@ -46,3 +46,5 @@ const getUserChoice = async () => {
   const choice = await rl.question(CHOICE_PROMPT);
   return choice;
 };
+
+const resetScores = () => ({ userScore: 0, computerScore: 0 });
