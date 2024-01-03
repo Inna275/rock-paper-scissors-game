@@ -21,3 +21,15 @@ const gameRules = {
     message: 'Scissors cut paper',
   },
 };
+
+const getRandomOption = () => {
+  const options = Object.keys(gameRules);
+  const randomIndex = Math.floor(Math.random() * options.length);
+  return options[randomIndex];
+};
+
+const getComputerChoice = () => {
+  const choice = getRandomOption();
+  console.log(`Computer chooses ${choice}`);
+  return choice;
+};
